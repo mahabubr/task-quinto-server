@@ -2,7 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/auth.js";
-import teamRoutes from "./routes/team.js"
+import teamRoutes from "./routes/team.js";
+import memberRoutes from "./routes/member.js";
 
 dotenv.config();
 
@@ -15,7 +16,7 @@ const PORT = process.env.PORT || 5000;
 // --- Routes ---
 app.use("/api/auth", authRoutes);
 app.use("/api/team", teamRoutes);
-
+app.use("/api/member", memberRoutes);
 
 // --- Start Server ---
 app.listen(PORT, () => {
