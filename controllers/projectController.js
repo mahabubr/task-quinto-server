@@ -38,7 +38,11 @@ export const getProjects = async (req, res) => {
       include: {
         user: true,
         team: {
-          include: { members: true },
+          include: {
+            members: {
+              include: { task: true },
+            },
+          },
         },
         task: {
           include: { members: true },
