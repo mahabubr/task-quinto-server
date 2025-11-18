@@ -1,0 +1,16 @@
+{
+  "env": {
+    "node": true,
+    "es2021": true
+  },
+  "extends": ["eslint:recommended"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-console": "off", // Allow console.log for debugging
+    "no-unused-vars": ["warn"], // Warn for unused variables
+    "consistent-return": "off" // Allow Express handlers without explicit return
+  }
+}
