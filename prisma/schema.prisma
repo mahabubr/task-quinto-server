@@ -27,7 +27,7 @@ model team {
   description String?
 
   user_id Int
-  user    user     @relation(fields: [user_id], references: [id])
+  user    user     @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   members     member[]
   project     project[]
@@ -43,7 +43,7 @@ model member {
   capacity Int      @default(0)
 
   team_id   Int
-  team      team     @relation(fields: [team_id], references: [id])
+  team      team     @relation(fields: [team_id], references: [id],onDelete: Cascade)
 
   task task[]
 
@@ -56,10 +56,10 @@ model project {
   name     String
 
   user_id Int
-  user    user     @relation(fields: [user_id], references: [id])
+  user    user     @relation(fields: [user_id], references: [id],onDelete: Cascade)
 
   team_id   Int
-  team      team     @relation(fields: [team_id], references: [id])
+  team      team     @relation(fields: [team_id], references: [id],onDelete: Cascade)
 
   task task[]
 
@@ -76,7 +76,7 @@ model task {
   status Status @default(pending)
 
   project_id Int
-  project project @relation(fields: [project_id], references: [id])
+  project project @relation(fields: [project_id], references: [id], onDelete: Cascade)
 
   members     member[]
 
