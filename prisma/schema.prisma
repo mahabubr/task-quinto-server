@@ -18,6 +18,7 @@ model user {
   updated_at DateTime @updatedAt
 
   teams      team[]
+  project project[]
 }
 
 model team {
@@ -29,7 +30,8 @@ model team {
   user    user     @relation(fields: [user_id], references: [id])
 
   members     member[]
-  
+  project     project[]
+
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 }
@@ -43,7 +45,53 @@ model member {
   team_id   Int
   team      team     @relation(fields: [team_id], references: [id])
 
+  task task[]
+
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
 }
 
+model project {
+  id       Int      @id @default(autoincrement())
+  name     String
+
+  user_id Int
+  user    user     @relation(fields: [user_id], references: [id])
+
+  team_id   Int
+  team      team     @relation(fields: [team_id], references: [id])
+
+  task task[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model task {
+  id       Int      @id @default(autoincrement())
+  name     String
+  description String?
+
+  priority Priority @default(high)
+  status Status @default(pending)
+
+  project_id Int
+  project project @relation(fields: [project_id], references: [id])
+
+  members     member[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+enum Priority {
+  low
+  medium
+  high
+}
+
+enum Status {
+  pending
+  in_progress
+  done
+}

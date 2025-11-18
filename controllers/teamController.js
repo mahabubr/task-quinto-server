@@ -29,8 +29,11 @@ export const createTeam = async (req, res) => {
 
 // Get all teams
 export const getTeams = async (req, res) => {
+  const { user_id } = req.query;
+
   try {
     const teams = await prisma.team.findMany({
+      where: { user_id: Number(user_id) },
       include: {
         user: true, // Include related user
         members: true, // Include members
