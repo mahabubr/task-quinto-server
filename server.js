@@ -6,6 +6,7 @@ import teamRoutes from "./routes/team.js";
 import memberRoutes from "./routes/member.js";
 import projectRoutes from "./routes/project.js";
 import taskRoutes from "./routes/task.js";
+import dashboardRoutes from "./routes/dashboard.js";
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use("/api/team", teamRoutes);
 app.use("/api/member", memberRoutes);
 app.use("/api/project", projectRoutes);
 app.use("/api/task", taskRoutes);
+app.use("/api/dashboard", dashboardRoutes);
 
 // --- Start Server ---
 app.listen(PORT, () => {
